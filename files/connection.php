@@ -1,7 +1,7 @@
 <html>
 <head>
   <title>results</title>
-  <h1>The top students</h1>
+  <h1>The Top Names</h1>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -46,14 +46,10 @@ if (mysqli_num_rows($result) > 0) {
       ?>
       <tr>
          <td><center><?php echo $row['name'];?></center></td>
-<?php //echo "<br>";?>
          <td><center><?php echo $row['gender']; ?></center></td>
-<?php //echo "<br>";?>
          <td><center><?php echo $row['position']; ?></center></td>
       </tr>
-    
-<?php //echo "<br>";
-//echo "<br>";
+    <?php
     }
 }
  else {
