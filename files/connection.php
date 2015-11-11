@@ -7,9 +7,6 @@
 <body>
 <center>
 <?php
-$top=$_GET['tname'];
-$year=$_GET['year'];
-$gender=$_GET['Gender'];
 $con = mysqli_connect("localhost","ashishsingh","1234","save");
 
 // Check connection
@@ -53,7 +50,7 @@ if (mysqli_num_rows($result) > 0) {
     }
 }
  else {
-    echo "0 results";
+    echo "No Results Found";
 }
 
 mysqli_close($con);
