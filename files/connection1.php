@@ -3,9 +3,9 @@ include("fusioncharts.php");
 ?>
 <html>
 <head>
-    <title>Simple Column 2D Chart</title>
+    <title>RESULT</title>
 
-    <!-- **Step 2:**  Include the `fusioncharts.js` file. This file is needed to render the chart. Ensure that the path to this JS file is correct. Otherwise, it may lead to JavaScript errors. -->
+    
 
     <script src="fusioncharts.js"></script>
    </head>
@@ -34,17 +34,17 @@ echo "connnected to mysQl";
 $strQuery = "SELECT * FROM `a_temp` where BINARY name=\"$name\" and gender=\"$gender\" and year BETWEEN $year and 2013";
  
 
-// Execute the query, or else return the error message.
+
 
 $result = $dbhandle->query($strQuery) or exit("Error code ({$dbhandle->errno}): {$dbhandle->error}");
 
-// If the query returns a valid response, prepare the JSON strin
+
 if($option=='bar')
 {
 if ($result) 
 {  
   
-// The `$arrData` array holds the chart attributes and data
+
 
 $arrData = array(
   "chart" => array
@@ -67,7 +67,7 @@ $arrData = array(
 
 $arrData["data"] = array();
 
-// Push the data into the array
+
 
 while($row = mysqli_fetch_array($result)) 
 {
@@ -78,20 +78,18 @@ array_push($arrData["data"], array(
 );
 }
 
-/*JSON Encode the data to retrieve the string containing the JSON representation of the data in the array. */
+
 
 $jsonEncodedData = json_encode($arrData);
 
 $columnChart = new FusionCharts("line", "myFirstChart" , 1000, 300, "chart-1", "json", $jsonEncodedData);
 
-// Render the chart
+
 
 $columnChart->render();
 }
-// Close the database connection
 else
 {
-
 }
 
 $dbhandle->close();
