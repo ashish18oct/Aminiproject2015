@@ -20,7 +20,7 @@ $option=$_GET['option'];
 
 $dbhandle= mysqli_connect("localhost","ashishsingh","1234","save");
 
-// Check connection
+
 if (mysqli_connect_errno())
   {
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
