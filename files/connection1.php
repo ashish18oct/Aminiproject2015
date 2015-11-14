@@ -84,7 +84,7 @@ else
 }
 
 ?>
-<div id="chart-1">Fusion Charts will render here</div>
+<div id="chart-1"><!--Fusion Charts will render here--></div>
 </center>
    </body>
 </html>
