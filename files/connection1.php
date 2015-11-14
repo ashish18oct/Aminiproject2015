@@ -39,13 +39,9 @@ $strQuery = "SELECT * FROM `a_temp` where BINARY name=\"$name\" and gender=\"$ge
 $result = $dbhandle->query($strQuery) or exit("Error code ({$dbhandle->errno}): {$dbhandle->error}");
 
 
-if($option=='bar')
-{
 if ($result) 
 {  
   
-
-
 $arrData = array(
   "chart" => array
   (
@@ -77,21 +73,9 @@ array_push($arrData["data"], array(
   )
 );
 }
-
-
-
 $jsonEncodedData = json_encode($arrData);
-
 $columnChart = new FusionCharts("line", "myFirstChart" , 1000, 300, "chart-1", "json", $jsonEncodedData);
-
-
-
 $columnChart->render();
-}
-else
-{
-}
-
 $dbhandle->close();
 }
 else
