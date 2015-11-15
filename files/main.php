@@ -1,7 +1,7 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="style.css">
-<h1><center>XYZ</center></h1>
+<h1><center>BABY NAMES</center></h1>
 </head>
 <body>
 <br>
