@@ -18,7 +18,7 @@ $year=$_GET['year'];
 $gender=$_GET['Gender'];
 $option=$_GET['option'];
 
-$dbhandle= mysqli_connect("localhost","ashishsingh","1234","save");
+$con= mysqli_connect("localhost","ashishsingh","1234","save");
 
 
 if (mysqli_connect_errno())
@@ -36,7 +36,7 @@ $strQuery = "SELECT * FROM `a_temp` where BINARY name=\"$name\" and gender=\"$ge
 
 
 
-$result = $dbhandle->query($strQuery) or exit("Error code ({$dbhandle->errno}): {$dbhandle->error}");
+$result = $con->query($strQuery) or exit("Error code ({$con->errno}): {$con->error}");
 
 
 if ($result) 
@@ -76,7 +76,7 @@ array_push($arrData["data"], array(
 $jsonEncodedData = json_encode($arrData);
 $columnChart = new FusionCharts("line", "myFirstChart" , 1000, 300, "chart-1", "json", $jsonEncodedData);
 $columnChart->render();
-$dbhandle->close();
+$con->close();
 }
 else
 {
