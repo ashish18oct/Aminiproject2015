@@ -17,7 +17,8 @@ Top Names:
 <form action="connection.php" method="get">
 	<fieldset>
     <legend>information:</legend>
- Top: <input type="text" name="tname">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspYear: <select name="year">
+ Top: <input type="text" name="tname"> 
+ Year: <select name="year">
 <?php
     for ($i=1944; $i<=2013; $i++)
     {
@@ -27,7 +28,7 @@ Top Names:
     }
 ?>
 
-</select>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+</select>
  Gender:<select name="Gender">
   <option value="male">Male</option>
   <option value="female">Female</option>
@@ -41,7 +42,8 @@ Top Names:
 <form action="connection1.php" method="get">
 	<fieldset>
     <legend>information:</legend>
- Top: <input type="text" name="name">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspYear: <input type="text" name="year">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+ Name: <input type="text" name="name">
+ Year: <select type="text" name="year">
  <?php
     for ($i=1944; $i<=2013; $i++)
     {
@@ -50,6 +52,7 @@ Top Names:
         <?php
     }
 ?>
+</select>
  Gender:<select name="Gender">
   <option value="male">Male</option>
   <option value="female">Female</option>
