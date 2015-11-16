@@ -13,8 +13,7 @@ if (mysqli_connect_errno())
   {
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
-else
-{
+
 
 if($gender=='male' || $gender=='female')
 {
@@ -28,7 +27,7 @@ $sql = "SELECT name,gender,position FROM `a_temp` where position<=$top and year=
 $result = mysqli_query($con, $sql);
 
 if (mysqli_num_rows($result) > 0) {
-    // output data of each row
+    
 ?>
   <table border="1" style="width:70%">
       <tr>
