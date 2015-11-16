@@ -9,15 +9,13 @@
 <?php
 $con = mysqli_connect("localhost","ashishsingh","1234","save");
 
-// Check connection
 if (mysqli_connect_errno())
   {
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
 else
 {
-//echo "connnected to mysQl";
-}
+
 if($gender=='male' || $gender=='female')
 {
 $sql = "SELECT name,gender,position FROM `a_temp` where position<=$top and year=$year and gender=\"$gender\"";
