@@ -2,6 +2,9 @@
 <head>
 <link rel="stylesheet" type="text/css" href="style.css">
 <h1><center>BABY NAMES</center></h1>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">        </script>
+<script src="typeahead.min.js"></script>
+
 </head>
 <body>
 <br>
