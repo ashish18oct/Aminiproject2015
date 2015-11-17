@@ -65,4 +65,14 @@ Top Names:
 
    </body>
    </html>
+   <script>
+    $(document).ready(function(){
+    $('input.typeahead').typeahead({
+        name: 'typeahead',
+        remote:'search.php?key=%QUERY,key2=var2',
+        prefetch:'search.json',
+        limit : 10
+    });
+});
+    </script>
    
