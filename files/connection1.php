@@ -27,8 +27,8 @@ if (mysqli_connect_errno())
   }
 else
 {
-echo "connnected to mysQl";
-}
+/*echo "connnected to mysQl";
+*/}
 
 
 $strQuery = "SELECT * FROM `a_temp` where BINARY name=\"$name\" and gender=\"$gender\" and year BETWEEN $year and 2013";
