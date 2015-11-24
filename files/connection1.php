@@ -1,90 +1,66 @@
- <?php
-include("fusioncharts.php");
+<?php
+
+    class FusionCharts {
+        
+        private $constructorOptions = array();
+
+        private $constructorTemplate = '
+        <script type="text/javascript">
+            FusionCharts.ready(function () {
+                new FusionCharts(__constructorOptions__);
+            });
+        </script>';
+
+        private $renderTemplate = '
+        <script type="text/javascript">
+            FusionCharts.ready(function () {
+                FusionCharts("__chartId__").render();
+            });
+        </script>
+        ';
+
+        // constructor
+        function __construct($type, $id, $width = 400, $height = 300, $renderAt, $dataFormat, $dataSource) {
+            isset($type) ? $this->constructorOptions['type'] = $type : '';
+            isset($id) ? $this->constructorOptions['id'] = $id : 'php-fc-'.time();
+            isset($width) ? $this->constructorOptions['width'] = $width : '';
+            isset($height) ? $this->constructorOptions['height'] = $height : '';
+            isset($renderAt) ? $this->constructorOptions['renderAt'] = $renderAt : '';
+            isset($dataFormat) ? $this->constructorOptions['dataFormat'] = $dataFormat : '';
+            isset($dataSource) ? $this->constructorOptions['dataSource'] = $dataSource : '';
+
+            $tempArray = array();
+            foreach($this->constructorOptions as $key => $value) {
+                if ($key === 'dataSource') {
+                    $tempArray['dataSource'] = '__dataSource__';
+                } else {
+                    $tempArray[$key] = $value;
+                }
+            }
+            
+            $jsonEncodedOptions = json_encode($tempArray);
+            
+            if ($dataFormat === 'json') {
+                $jsonEncodedOptions = preg_replace('/\"__dataSource__\"/', $this->constructorOptions['dataSource'], $jsonEncodedOptions);
+            } elseif ($dataFormat === 'xml') { 
+                $jsonEncodedOptions = preg_replace('/\"__dataSource__\"/', '\'__dataSource__\'', $jsonEncodedOptions);
+                $jsonEncodedOptions = preg_replace('/__dataSource__/', $this->constructorOptions['dataSource'], $jsonEncodedOptions);
+            } elseif ($dataFormat === 'xmlurl') {
+                $jsonEncodedOptions = preg_replace('/__dataSource__/', $this->constructorOptions['dataSource'], $jsonEncodedOptions);
+            } elseif ($dataFormat === 'jsonurl') {
+                $jsonEncodedOptions = preg_replace('/__dataSource__/', $this->constructorOptions['dataSource'], $jsonEncodedOptions);
+            }
+            $newChartHTML = preg_replace('/__constructorOptions__/', $jsonEncodedOptions, $this->constructorTemplate);
+
+            echo $newChartHTML;
+        }
+
+        // render the chart created
+        // It prints a script and calls the FusionCharts javascript render method of created chart
+        function render() {
+           $renderHTML = preg_replace('/__chartId__/', $this->constructorOptions['id'], $this->renderTemplate);
+           echo $renderHTML;
+        }
+
+    }
 ?>
-<html>
-<head>
-    <title>RESULT</title>
-
-    
-
-    <script src="fusioncharts.js"></script>
-   </head>
-   <body>
-    <center>
-    <?php
-
-$name=$_GET['name'];
-$year=$_GET['year'];
-$gender=$_GET['Gender'];
-$option=$_GET['option'];
-
-$con= mysqli_connect("localhost","ashishsingh","1234","save");
-
-
-if (mysqli_connect_errno())
-  {
-  echo "Failed to connect to MySQL: " . mysqli_connect_error();
-  }
-else
-{
-/*echo "connnected to mysQl";
-*/}
-
-
-$strQuery = "SELECT * FROM `a_temp` where BINARY name=\"$name\" and gender=\"$gender\" and year BETWEEN $year and 2013";
- 
-
-
-
-$result = $con->query($strQuery) or exit("Error code ({$con->errno}): {$con->error}");
-
-
-if ($result) 
-{  
-  
-$arrData = array(
-  "chart" => array
-  (
-    "caption" => "Top 10 Names",
-    "paletteColors"=>"#0075c2",
-    "bgColor" => "#ffffff",
-    "borderAlpha"=>"20",
-    "canvasBorderAlpha"=> "0",
-    "usePlotGradientColor"=> "0",
-    "plotBorderAlpha"=>"10",
-    "showXAxisLine"=>"1",
-    "xAxisLineColor"=>"#999999",
-    "showValues" =>"0",
-    "divlineColor" =>"#999999",
-    "divLineIsDashed"=>"1",
-    "showAlternateHGridColor"=>"0"
-  )
-);
-
-$arrData["data"] = array();
-
-
-
-while($row = mysqli_fetch_array($result)) 
-{
-array_push($arrData["data"], array(
-  "label" => $row["year"],
-  "value" => $row["amount"]
-  )
-);
-}
-$jsonEncodedData = json_encode($arrData);
-$columnChart = new FusionCharts("line", "myFirstChart" , 1000, 300, "chart-1", "json", $jsonEncodedData);
-$columnChart->render();
-$con->close();
-}
-else
-{
-  echo "not valid";
-}
-
-?>
-<div id="chart-1"><!--Fusion Charts will render here--></div>
-</center>
-   </body>
-</html>
